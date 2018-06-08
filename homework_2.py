@@ -9,7 +9,6 @@ test_display_devices,13,success"""
 
 
 tablica_recordów = RECORDS.split("\n")
-tablica_recordów_podzielonych = []
 
 dict_of_dicts = {}
 
