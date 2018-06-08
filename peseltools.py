@@ -11,16 +11,30 @@ def validate(pesel) :
     if len(pesel) != 11:
         return False
 
-    check_sum = ((9 * int(pesel[0])) +
-                 (7 * int(pesel[1])) +
-                 (3 * int(pesel[2])) +
-                 (1 * int(pesel[3])) +
-                 (9 * int(pesel[4])) +
-                 (7 * int(pesel[5])) +
-                 (3 * int(pesel[6])) +
-                 (1 * int(pesel[7])) +
-                 (9 * int(pesel[8])) +
-                 (7 * int(pesel[9])))
+    check_sum = 0
+    waga = 9
+
+    for char in pesel[0:10]:
+        check_sum += waga * int(char)
+
+        if waga == 1:
+            waga = 9
+        elif waga == 7:
+            waga = 3
+        else:
+            waga -= 2
+
+    #check_sum = ((9 * int(pesel[0])) +
+    #             (7 * int(pesel[1])) +
+    #             (3 * int(pesel[2])) +
+    #             (1 * int(pesel[3])) +
+    #             (9 * int(pesel[4])) +
+     #            (7 * int(pesel[5])) +
+     #            (3 * int(pesel[6])) +
+      #           (1 * int(pesel[7])) +
+       #          (9 * int(pesel[8])) +
+        #         (7 * int(pesel[9])))
+
     modulo = check_sum % 10
 
     if modulo != int(pesel[10]):
@@ -89,30 +103,11 @@ def extract_personal_data(pesel):
     if 81 <= month <= 92:
         year_pr = 1800 + year
 
-    if month % 20 == 1:
-        month_pr = "Styczeń"
-    if month % 20 == 2:
-        month_pr = "Luty"
-    if month % 20 == 3:
-        month_pr = "Marzec"
-    if month % 20 == 4:
-        month_pr = "Kwiecień"
-    if month % 20 == 5:
-        month_pr = "Maj"
-    if month % 20 == 6:
-        month_pr = "Czerwiec"
-    if month % 20 == 7:
-        month_pr = "Lipiec"
-    if month % 20 == 8:
-        month_pr = "Sierpień"
-    if month % 20 == 9:
-        month_pr = "Wrzesień"
-    if month % 20 == 10:
-        month_pr = "Październik"
-    if month % 20 == 11:
-        month_pr = "Listopad"
-    if month % 20 == 12:
-        month_pr = "Grudzień"
+    months = ["Styczeń", "Luty", "Marzec", "Kwiecień", "Maj", "Czerwiec", "Lipiec", "Sierpień", "Wrzesień", "Październik", "Listopad", "Grudzień"]
+
+    x = (month % 20) - 1
+    month_pr = months[x]
+
 
     if sex == 0:
         sex_pr = "Kobieta"
