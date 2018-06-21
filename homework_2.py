@@ -9,6 +9,7 @@ test_display_devices,13,success"""
 
 
 tablica_recordów = RECORDS.split("\n")
+tablica_recordów_podzielonych = []
 
 dict_of_dicts = {}
 
@@ -39,8 +40,9 @@ for name, value in dict_of_dicts.items():
         czas_najdluzej_dzialajacego_testu = czas_testu
         nazwa_najdluzej_dzialajacego_testu = name
 
+for name, value in dict_of_dicts.items():
+    print ("Test:", name, ", ilość sukcesów:", value["succes"], ", ilość porażek:", value["failure"])
 
-print(dict_of_dicts)
 print("Najdłużej działający test to: ", nazwa_najdluzej_dzialajacego_testu)
 
 
